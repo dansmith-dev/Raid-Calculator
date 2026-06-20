@@ -2,6 +2,7 @@
 
 public class EffectPipeline
 {
+    public ActionContext Context { get; set; }
     public Champion[] Champions { get; set; } = [];
     public Champion? Caster { get; set; }
 
@@ -10,6 +11,16 @@ public class EffectPipeline
     public EffectPipeline Then(Action<EffectPipeline> step)
     {
         _steps.Add(step);
+        return this;
+    }
+    
+    public EffectPipeline ThenIf(bool condition, Action<EffectPipeline> step)
+    {
+        if (condition)
+        {
+            _steps.Add(step);
+        }
+
         return this;
     }
 
