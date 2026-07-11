@@ -23,20 +23,36 @@ public class EffectPipeline
         });
         return this;
     }
+    
+    public EffectPipeline Branch(
+        Func<EffectPipeline, bool> condition,
+        Action<EffectPipeline> ifTrue,
+        Action<EffectPipeline> ifFalse)
+    {
+        _steps.Add(parent =>
+        {
+            var child = new EffectPipeline
+            {
+                Context = parent.Context,
+                Champions = parent.Champions,
+                Caster = parent.Caster
+            };
+            (condition(child) ? ifTrue : ifFalse)(child);
+            child.Run();
+        });
+        return this;
+    }
 
     public EffectPipeline Split(
         Action<EffectPipeline> configureLeft,
-        Action<EffectPipeline> configureRight,
-        Func<Champion, bool>? leftPredicate = null)
+        Action<EffectPipeline> configureRight)
     {
-        leftPredicate ??= c => c.IsChampion;
-
         _steps.Add(parent =>
         {
             var left = new EffectPipeline
             {
                 Context = parent.Context,
-                Champions = parent.Champions.Where(leftPredicate).ToArray(),
+                Champions = parent.Champions,
                 Caster = parent.Caster
             };
             configureLeft(left);
@@ -45,7 +61,7 @@ public class EffectPipeline
             var right = new EffectPipeline
             {
                 Context = parent.Context,
-                Champions = parent.Champions.Where(c => !leftPredicate(c)).ToArray(),
+                Champions = parent.Champions,
                 Caster = parent.Caster
             };
             configureRight(right);

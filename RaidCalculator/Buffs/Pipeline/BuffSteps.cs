@@ -11,6 +11,14 @@ public static class BuffSteps
     {
         pipeline.Champions = pipeline.Champions.Where(c => !c.IsChampion).ToArray();
     }
+    
+    public static void FilterToOpponents(BuffPipeline pipeline)
+    {
+        if (pipeline.Caster.IsChampion)
+            pipeline.Champions = pipeline.Champions.Where(c => !c.IsChampion).ToArray();
+        else
+            pipeline.Champions = pipeline.Champions.Where(c => c.IsChampion).ToArray();
+    }
 
     public static void FilterToCaster(BuffPipeline pipeline)
     {
@@ -25,6 +33,14 @@ public static class BuffSteps
     public static void ApplyDefenceMultiplierBuffToChampions(BuffPipeline pipeline, double value, int duration)
     {
         ApplyStatMultiplier(pipeline, ChampionStat.Defence, value, duration);
+    }
+
+    public static void StunChampions(BuffPipeline pipeline, int duration)
+    {
+        foreach (var champion in pipeline.Champions)
+        {
+            champion.ActiveBuffs.Add(new AppliedBuff("Stun", duration, BuffType.Stun, null , null, null));
+        }
     }
 
     public static void ApplyStatMultiplier(
@@ -42,7 +58,7 @@ public static class BuffSteps
 
             if (existing is null)
             {
-                champion.ActiveBuffs.Add(new AppliedBuff(buffName, duration, stat, multiplier, null));
+                champion.ActiveBuffs.Add(new AppliedBuff(buffName, duration, BuffType.Stat, stat, multiplier, null));
                 continue;
             }
 

@@ -1,16 +1,8 @@
 namespace RaidCalculator.Buffs;
 
-public class IncreaseDefenceBuff : Buff
+public class IncreaseDefenceBuff(int duration = 3, double defenceMultiplier = 1.6) : Buff("Defence Buff", duration)
 {
-    public double DefenceMultiplier;
-
-    public IncreaseDefenceBuff(
-        int duration = 3,
-        double defenceMultiplier = 1.6)
-        : base("Defence Buff", duration)
-    {
-        DefenceMultiplier = defenceMultiplier;
-    }
+    public double DefenceMultiplier = defenceMultiplier;
 
     public override void ConfigureBuffPipeline(BuffPipeline buffPipeline)
     {

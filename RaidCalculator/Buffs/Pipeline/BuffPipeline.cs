@@ -24,6 +24,25 @@ public class BuffPipeline
         });
         return this;
     }
+    
+    public BuffPipeline Branch(
+        Func<BuffPipeline, bool> condition,
+        Action<BuffPipeline> ifTrue,
+        Action<BuffPipeline> ifFalse)
+    {
+        _steps.Add(parent =>
+        {
+            var child = new BuffPipeline
+            {
+                Context = parent.Context,
+                Champions = parent.Champions,
+                Caster = parent.Caster
+            };
+            (condition(child) ? ifTrue : ifFalse)(child);
+            child.Run();
+        });
+        return this;
+    }
 
     public BuffPipeline Split(
         Action<BuffPipeline> configureLeft,

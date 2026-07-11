@@ -25,17 +25,17 @@ public class Battle
 
     public void TakeTurn()
     {
-        var actor = TurnMeterHelper.CalculateNextTurn(Champions.ToArray());
-        var context = new ActionContext { Caster = actor };
+        var nextChampion = TurnMeterHelper.CalculateNextTurn(Champions.ToArray());
+        var context = new ActionContext { Caster = nextChampion };
 
-        OnTurnStart(actor);
+        OnTurnStart(nextChampion);
 
-        var skill = SkillHelper.GetNextSkill(actor);
+        var skill = SkillHelper.GetNextSkill(nextChampion);
         context.Skill = skill;
         if (skill is null)
             return;
 
-        UseSkill(context, actor, skill);
+        UseSkill(context, nextChampion, skill);
         OnTurnEnd();
         RemoveDead();
     }

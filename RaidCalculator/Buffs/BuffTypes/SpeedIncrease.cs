@@ -16,6 +16,10 @@ public class SpeedIncrease : Buff
     {
         buffPipeline
             .Then(BuffSteps.FilterToAllies)
-            .Then(p => BuffSteps.ApplySpeedMultiplierBuffToChampions(p, SpeedMultiplier, BuffDuration));
+            .ThenIf(p => 
+                PipelineConditions.Chance(0.5),
+                steps => steps
+                    .Then(p => BuffSteps.ApplySpeedMultiplierBuffToChampions(p, SpeedMultiplier, BuffDuration))
+            );
     }
 }

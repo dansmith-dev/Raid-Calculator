@@ -6,12 +6,14 @@ public class AppliedBuff
     public int TurnsRemaining;
     public double? Multiplier;
     public double? FlatRate;
-    public ChampionStat AffectedStat;
+    public ChampionStat? AffectedStat;
+    public BuffType BuffType;
 
     public AppliedBuff(
         string name,
         int turnsRemaining,
-        ChampionStat affectedStat,
+        BuffType buffType,
+        ChampionStat? affectedStat,
         double? multiplier,
         double? flatRate)
     {
@@ -20,5 +22,6 @@ public class AppliedBuff
         AffectedStat = affectedStat;
         Multiplier = multiplier;
         FlatRate = flatRate;
+        BuffType = buffType;
     }
 }

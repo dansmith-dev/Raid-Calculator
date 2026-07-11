@@ -47,4 +47,16 @@ public static class EffectSteps
             champion.Health = Math.Min(champion.MaxHp, champion.Health + champion.MaxHp * value);
         }
     }
+
+    public static void ReduceBuffDuration(EffectPipeline pipeline)
+    {
+        foreach (var champion in pipeline.Champions)
+        {
+            foreach (var buff in champion.ActiveBuffs)
+            {
+                if (buff.TurnsRemaining >= 1)
+                    buff.TurnsRemaining--;
+            }
+        }
+    }
 }

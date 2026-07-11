@@ -28,6 +28,8 @@ public class Champion
     public double CritDamage => GetValueWithBuffsApplied(ChampionStat.CritDamage, BaseCritDamage);
     public double BaseCritDamage;
 
+    public bool IsStunned => ActiveBuffs.Any(b => b.BuffType == BuffType.Stun);
+
     public List<AppliedBuff> ActiveBuffs = [];
 
     public Champion(
