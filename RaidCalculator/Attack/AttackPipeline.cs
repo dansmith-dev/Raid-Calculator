@@ -1,3 +1,5 @@
+using RaidCalculator.Models;
+using RaidCalculator.Models.Results;
 using RaidCalculator.Results;
 
 namespace RaidCalculator.Attack;

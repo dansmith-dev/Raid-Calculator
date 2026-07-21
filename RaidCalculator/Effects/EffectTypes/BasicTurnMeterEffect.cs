@@ -1,3 +1,4 @@
+
 namespace RaidCalculator.Effects;
 
 public class BasicTurnMeterEffect : Effect
@@ -7,7 +8,7 @@ public class BasicTurnMeterEffect : Effect
         Name = "Ally Turn Meter Fill";
     }
 
-    public override void ConfigureEffectPipeline(EffectPipeline pipeline)
+    public override void ConfigureEffectPipeline(Pipeline pipeline)
     {
         pipeline
             .Then(EffectSteps.FilterToAllies)

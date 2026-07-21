@@ -1,4 +1,6 @@
-namespace RaidCalculator.Results;
+using RaidCalculator.Results;
+
+namespace RaidCalculator.Models.Results;
 
 public class AttackResult
 {

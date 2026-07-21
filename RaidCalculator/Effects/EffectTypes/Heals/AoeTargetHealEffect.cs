@@ -1,3 +1,4 @@
+
 namespace RaidCalculator.Effects;
 
 public class AoeTargetHealEffect : Effect
@@ -10,7 +11,7 @@ public class AoeTargetHealEffect : Effect
         _healMultiplier = healMultiplier;
     }
 
-    public override void ConfigureEffectPipeline(EffectPipeline pipeline)
+    public override void ConfigureEffectPipeline(Pipeline pipeline)
     {
         pipeline
             .Then(EffectSteps.FilterToAllies)

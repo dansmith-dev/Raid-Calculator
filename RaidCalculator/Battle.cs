@@ -1,4 +1,5 @@
 using RaidCalculator.Helpers;
+using RaidCalculator.Models;
 
 namespace RaidCalculator;
 

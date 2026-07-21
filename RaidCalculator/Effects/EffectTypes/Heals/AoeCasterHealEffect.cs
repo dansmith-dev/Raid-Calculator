@@ -1,4 +1,5 @@
-namespace RaidCalculator.Effects;
+
+namespace RaidCalculator.Effects.EffectTypes.Heals;
 
 public class AoeCasterHealEffect : Effect
 {
@@ -10,7 +11,7 @@ public class AoeCasterHealEffect : Effect
         _healMultiplier = healMultiplier;
     }
 
-    public override void ConfigureEffectPipeline(EffectPipeline pipeline)
+    public override void ConfigureEffectPipeline(Pipeline pipeline)
     {
         pipeline
             .Then(EffectSteps.FilterToCaster)

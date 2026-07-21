@@ -4,10 +4,10 @@ public class IncreaseDefenceBuff(int duration = 3, double defenceMultiplier = 1.
 {
     public double DefenceMultiplier = defenceMultiplier;
 
-    public override void ConfigureBuffPipeline(BuffPipeline buffPipeline)
+    public override void ConfigureBuffPipeline(Pipeline buffPipeline)
     {
         buffPipeline
             .Then(BuffSteps.FilterToAllies)
-            .Then(p => BuffSteps.ApplyDefenceMultiplierBuffToChampions(p, DefenceMultiplier, BuffDuration));
+            .Then(BuffSteps.ApplyDefenceMultiplier(DefenceMultiplier, BuffDuration));
     }
 }

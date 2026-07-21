@@ -1,6 +1,6 @@
 using RaidCalculator.Buffs;
 
-namespace RaidCalculator.Results;
+namespace RaidCalculator.Models.Results;
 
 public class BuffResult
 {

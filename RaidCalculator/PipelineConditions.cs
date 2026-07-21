@@ -1,4 +1,4 @@
-namespace RaidCalculator.Buffs;
+namespace RaidCalculator;
 
 public static class PipelineConditions
 {
@@ -8,6 +8,4 @@ public static class PipelineConditions
 
         return random.NextDouble() > chance;
     }
-    
-    
 }

@@ -1,6 +1,7 @@
+using RaidCalculator.Models.Results;
 using RaidCalculator.Results;
 
-namespace RaidCalculator;
+namespace RaidCalculator.Models;
 
 public class ActionContext
 {
@@ -11,4 +12,6 @@ public class ActionContext
     public List<EffectResult> EffectResults { get; } = [];
     public List<BuffResult> BuffResults { get; } = [];
     public AttackResult? AttackResult { get; set; }
+    
+    public Random Rng = new Random();
 }

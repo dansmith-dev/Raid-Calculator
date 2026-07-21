@@ -1,4 +1,3 @@
-using RaidCalculator.Buffs;
 
 namespace RaidCalculator.Effects;
 
@@ -9,7 +8,7 @@ public class ChancedReduceBuffDuration: Effect
         Name = "Chanced Reduce Buff Duration";
     }
     
-    public override void ConfigureEffectPipeline(EffectPipeline pipeline)
+    public override void ConfigureEffectPipeline(Pipeline pipeline)
     {
         // Has a 20% chance of decreasing the duration of all buffs by 1 turn.
         pipeline

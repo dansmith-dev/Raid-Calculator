@@ -1,6 +1,6 @@
 using RaidCalculator.Effects;
 
-namespace RaidCalculator.Results;
+namespace RaidCalculator.Models.Results;
 
 public class EffectResult
 {

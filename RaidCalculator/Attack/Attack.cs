@@ -1,3 +1,5 @@
+using RaidCalculator.Models;
+
 namespace RaidCalculator.Attack;
 
 public abstract class Attack : ISkillAction

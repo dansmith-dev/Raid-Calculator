@@ -1,3 +1,5 @@
+using RaidCalculator.Models;
+
 namespace RaidCalculator.Buffs;
 
 public abstract class Buff : ISkillAction
@@ -18,17 +20,17 @@ public abstract class Buff : ISkillAction
 
     public void ApplyBuff(ActionContext actionContext, Champion[] champions, Champion? caster = null)
     {
-        var pipeline = new BuffPipeline
+        var pipeline = new Pipeline
         {
+            ActionName = Name,
             Champions = champions,
             Caster = caster,
-            Context = actionContext,
-            Buff = this
+            Context = actionContext
         };
 
         ConfigureBuffPipeline(pipeline);
         pipeline.Run();
     }
 
-    public abstract void ConfigureBuffPipeline(BuffPipeline buffPipeline);
+    public abstract void ConfigureBuffPipeline(Pipeline buffPipeline);
 }

@@ -12,14 +12,14 @@ public class SpeedIncrease : Buff
         SpeedMultiplier = speedMultiplier;
     }
 
-    public override void ConfigureBuffPipeline(BuffPipeline buffPipeline)
+    public override void ConfigureBuffPipeline(Pipeline buffPipeline)
     {
         buffPipeline
             .Then(BuffSteps.FilterToAllies)
             .ThenIf(p => 
                 PipelineConditions.Chance(0.5),
                 steps => steps
-                    .Then(p => BuffSteps.ApplySpeedMultiplierBuffToChampions(p, SpeedMultiplier, BuffDuration))
+                    .Then(p => BuffSteps.ApplySpeedMultiplier(SpeedMultiplier, BuffDuration))
             );
     }
 }

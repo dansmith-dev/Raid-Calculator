@@ -1,3 +1,5 @@
+using RaidCalculator.Models;
+
 namespace RaidCalculator;
 
 public interface ISkillAction

@@ -1,3 +1,5 @@
+using RaidCalculator.Models;
+
 namespace RaidCalculator.Effects;
 
 public abstract class Effect : ISkillAction
@@ -11,8 +13,9 @@ public abstract class Effect : ISkillAction
 
     public void ApplyEffect(ActionContext actionContext, Champion[] champions, Champion? caster = null)
     {
-        var pipeline = new EffectPipeline
+        var pipeline = new Pipeline
         {
+            ActionName = Name,
             Champions = champions,
             Caster = caster,
             Context = actionContext,
@@ -22,5 +25,5 @@ public abstract class Effect : ISkillAction
         pipeline.Run();
     }
 
-    public abstract void ConfigureEffectPipeline(EffectPipeline pipeline);
+    public abstract void ConfigureEffectPipeline(Pipeline pipeline);
 }
