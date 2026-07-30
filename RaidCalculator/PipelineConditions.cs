@@ -6,6 +6,6 @@ public static class PipelineConditions
     {
         var random = new Random();
 
-        return random.NextDouble() > chance;
+        return random.NextDouble() < chance;
     }
 }
